@@ -6,6 +6,7 @@
 #include <WindowsX.h>
 #include "minesweeper.h"
 
+// globals were needed due to Win32 WINMSG environment, and to prioritize saving values rather than calculating them on demand
 MineSweeper* minesweeper;
 int winwidth,winheight,mousex,mousey;
 
@@ -13,7 +14,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PWSTR pCmdLine, _In_ int nCmdShow)
 {
-    // Initialize GDI+
+    // Initialize graphics library
     Gdiplus::GdiplusStartupInput gdiplusStartupInput;
     ULONG_PTR gdiPlusToken;
     Gdiplus::GdiplusStartup(&gdiPlusToken, &gdiplusStartupInput, nullptr);
@@ -62,7 +63,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
         DispatchMessage(&msg);
     }
 
-    free(minesweeper);
+    delete minesweeper;
     Gdiplus::GdiplusShutdown(gdiPlusToken);
     return 0;
 }
@@ -100,8 +101,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     }
     case WM_ACTIVATE:
     {
-        SetCursor(CreateCursor())
-
         minesweeper = new MineSweeper;
         minesweeper->initializeGrid();
         break;
@@ -138,5 +137,5 @@ void drawWindow(HDC hdc) {
     Gdiplus::SolidBrush brush(Gdiplus::Color(255, 0, 0, 0));
 
     gf.FillRectangle(&brush, 0, 0, winwidth, winheight);
-    minesweeper->drawGrid(hdc,winwidth,winheight);
+    minesweeper->draw(hdc,winwidth,winheight);
 }
