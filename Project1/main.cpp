@@ -6,8 +6,8 @@
 #include <WindowsX.h>
 #include "minesweeper.h"
 
-// globals were needed due to Win32 WINMSG environment, and to prioritize saving values rather than calculating them on demand
-MineSweeper* minesweeper;
+// globals were needed due to Win32 WINMSG environment
+std::unique_ptr<MineSweeper> minesweeper(new MineSweeper);
 int winwidth,winheight,mousex,mousey;
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -55,7 +55,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     ShowWindow(hwnd, nCmdShow);
 
     // Run the message loop.
-
     MSG msg = { };
     while (GetMessage(&msg, NULL, 0, 0) > 0)
     {
@@ -63,7 +62,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
         DispatchMessage(&msg);
     }
 
-    delete minesweeper;
     Gdiplus::GdiplusShutdown(gdiPlusToken);
     return 0;
 }
@@ -101,7 +99,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     }
     case WM_ACTIVATE:
     {
-        minesweeper = new MineSweeper;
         minesweeper->initializeGrid();
         break;
     }
@@ -134,7 +131,7 @@ void OnSize(HWND hwnd, UINT wParam, int width, int height) {
 
 void drawWindow(HDC hdc) {
     Gdiplus::Graphics gf(hdc);
-    Gdiplus::SolidBrush brush(Gdiplus::Color(255, 0, 0, 0));
+    Gdiplus::SolidBrush brush(black);
 
     gf.FillRectangle(&brush, 0, 0, winwidth, winheight);
     minesweeper->draw(hdc,winwidth,winheight);

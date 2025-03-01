@@ -1,13 +1,5 @@
 #include "minesweeper.h"
 
-Gdiplus::Color MineSweeper::black = Gdiplus::Color(0, 0, 0);
-Gdiplus::Color MineSweeper::darkgray = Gdiplus::Color(100, 100, 100);
-Gdiplus::Color MineSweeper::gray = Gdiplus::Color(200, 200, 200);
-Gdiplus::Color MineSweeper::white = Gdiplus::Color(255, 255, 255);
-Gdiplus::Color MineSweeper::lightblue = Gdiplus::Color(240, 240, 255);
-Gdiplus::Color MineSweeper::red = Gdiplus::Color(255, 0, 0);
-Gdiplus::Color MineSweeper::orange = Gdiplus::Color(240, 165, 0);
-
 void MineSweeper::setCell(int x, int y, bool to)
 {
 	cellsdata[(y * rowsize) + x] = to;

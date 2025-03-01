@@ -1,11 +1,20 @@
 #pragma once
 
+#define black  Gdiplus::Color(0, 0, 0)
+#define darkgray  Gdiplus::Color(100, 100, 100)
+#define gray  Gdiplus::Color(200, 200, 200)
+#define white  Gdiplus::Color(255, 255, 255)
+#define lightblue  Gdiplus::Color(240, 240, 255)
+#define red  Gdiplus::Color(255, 0, 0)
+#define orange  Gdiplus::Color(240, 165, 0)
+
 #include <windows.h>
 #include <gdiplus.h>
 #include <cstdlib>
 #include <ctime>
 #include <string>
 #include <iostream>
+#include <memory>
 
 class MineSweeper {
 
@@ -15,13 +24,6 @@ private:
 	static constexpr int gridsize = rowsize * rowsize;
 	static const int cellsize = 30;
 	static const int offset = 20;
-	static Gdiplus::Color black;
-	static Gdiplus::Color darkgray;
-	static Gdiplus::Color gray;
-	static Gdiplus::Color white;
-	static Gdiplus::Color lightblue;
-	static Gdiplus::Color red;
-	static Gdiplus::Color orange;
 
 	//data
 	bool cellsdata[gridsize];
