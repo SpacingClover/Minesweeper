@@ -1,12 +1,12 @@
 #pragma once
 
-#define black  Gdiplus::Color(0, 0, 0)
+#define black     Gdiplus::Color(0, 0, 0)
 #define darkgray  Gdiplus::Color(100, 100, 100)
-#define gray  Gdiplus::Color(200, 200, 200)
-#define white  Gdiplus::Color(255, 255, 255)
-#define lightblue  Gdiplus::Color(240, 240, 255)
-#define red  Gdiplus::Color(255, 0, 0)
-#define orange  Gdiplus::Color(240, 165, 0)
+#define gray      Gdiplus::Color(200, 200, 200)
+#define white     Gdiplus::Color(255, 255, 255)
+#define lightblue Gdiplus::Color(240, 240, 255)
+#define red       Gdiplus::Color(255, 0, 0)
+#define orange    Gdiplus::Color(240, 165, 0)
 
 #include <windows.h>
 #include <gdiplus.h>

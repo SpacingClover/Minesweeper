@@ -83,7 +83,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hwnd, &ps);
 
-        drawWindow(hdc);
+        drawWindow(hdc); // could use double buffering or smart invalidation
 
         EndPaint(hwnd, &ps);
         break;

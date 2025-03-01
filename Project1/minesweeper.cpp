@@ -245,7 +245,7 @@ int MineSweeper::mouseCoordToGrid(int val)
 	return (val - (val % cellsize)) / cellsize;
 }
 
-int MineSweeper::getGridRenderSize()
+int MineSweeper::getGridRenderSize() //this method was created in case i add different board sizes
 {
 	return rowsize * cellsize;
 }
